@@ -13,22 +13,22 @@ public class Main {
         }
 
         List<PrintJob> jobs = new ArrayList<>();
-        Scanner scanner = new Scanner(file);
 
-        while (scanner.hasNext()) {
-            String type = scanner.next();
-            String id = scanner.next();
-            int pages = scanner.nextInt();
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNext()) {
+                String type = scanner.next();
+                String id = scanner.next();
+                int pages = scanner.nextInt();
 
-            if (type.equals("MONO")) {
-                jobs.add(new MonoPrint(id, pages));
-            } else if (type.equals("COLOUR")) {
-                jobs.add(new ColourPrint(id, pages));
-            } else {
-                throw new IllegalArgumentException("Tipe tidak dikenal: " + type);
+                if (type.equals("MONO")) {
+                    jobs.add(new MonoPrint(id, pages));
+                } else if (type.equals("COLOUR")) {
+                    jobs.add(new ColourPrint(id, pages));
+                } else {
+                    throw new IllegalArgumentException("Tipe tidak dikenal: " + type);
+                }
             }
         }
-        scanner.close();
 
         for (PrintJob job : jobs) {
             System.out.println(job.summary());
