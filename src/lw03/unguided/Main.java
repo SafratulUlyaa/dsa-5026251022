@@ -51,6 +51,7 @@ public class Main {
             }
         }
         scanner.close();
+        
         System.out.println();
         System.out.println("===== Final Event Summary =====");
         System.out.println(
